@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigate | TRACKBACK</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>TRACKBACK<span>.</span></h2>
+        <div>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/investigate">Investigate</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <p class="tagline">AI-POWERED EVIDENCE INVESTIGATION</p>
+
+        <h1>Investigate a <span>Claim.</span></h1>
+
+        <p class="description">
+            Check suspicious messages, news and voice forwards
+            using AI-powered evidence investigation.
+        </p>
+
+        <div style="max-width:650px; margin:30px auto;">
+
+            <!-- TEXT INVESTIGATION -->
+            <section style="padding:20px; border:1px solid #777;
+                border-radius:14px; margin-bottom:25px;">
+
+                <h2>📝 Text Investigation</h2>
+
+                <textarea
+                    id="claimInput"
+                    placeholder="Paste a suspicious message or enter a claim..."
+                    maxlength="1000"
+                    style="width:100%; min-height:130px;
+                    padding:18px; border-radius:12px;
+                    font-size:16px; resize:vertical;
+                    box-sizing:border-box;"
+                ></textarea>
+
+                <br><br>
+
+                <button
+                    class="primary-btn"
+                    id="investigateBtn"
+                    onclick="investigateClaim()"
+                    type="button"
+                >
+                    Investigate Claim →
+                </button>
+            </section>
+
+            <!-- VOICE INVESTIGATION -->
+            <section style="padding:20px; border:1px solid #777;
+                border-radius:14px; margin-bottom:25px;">
+
+                <h2>🎙️ Voice Investigation</h2>
+
+                <p>
+                    Record a suspicious voice message in English
+                    or Kannada. TRACKBACK will convert it into text
+                    and investigate it.
+                </p>
+
+                <p style="color:#999;">
+                    Supported languages: English and ಕನ್ನಡ
+                </p>
+
+                <div style="text-align:center; margin:25px 0;">
+
+                    <div id="recordingStatus" style="margin-bottom:15px;">
+                        Ready to record
+                    </div>
+
+                    <button
+                        type="button"
+                        id="startRecordBtn"
+                        class="primary-btn"
+                        onclick="startRecording()"
+                    >
+                        🎙️ Start Recording
+                    </button>
+
+                    <button
+                        type="button"
+                        id="stopRecordBtn"
+                        onclick="stopRecording()"
+                        disabled
+                    >
+                        ⏹️ Stop Recording
+                    </button>
+
+                </div>
+
+                <audio
+                    id="audioPlayback"
+                    controls
+                    style="display:none; width:100%; margin:15px 0;"
+                ></audio>
+
+                <button
+                    type="button"
+                    id="deleteRecordBtn"
+                    onclick="deleteRecording()"
+                    style="display:none;"
+                >
+                    🗑️ Delete Recording
+                </button>
+
+                <br><br>
+
+                <button
+                    type="button"
+                    id="investigateVoiceBtn"
+                    class="primary-btn"
+                    onclick="investigateVoice()"
+                    disabled
+                >
+                    🔍 Investigate Voice
+                </button>
+
+                <p id="voiceLoading" style="display:none;">
+                    Transcribing and investigating your voice...
+                    Please wait.
+                </p>
+
+            </section>
+
+            <!-- ERROR MESSAGES -->
+            <div id="error" style="color:red; margin-top:15px;"></div>
+
+            <div id="voiceError" style="color:red; margin-top:15px;"></div>
+
+            <!-- TRANSCRIPT -->
+            <section id="transcriptBox"
+                style="display:none; margin-top:25px;
+                padding:18px; border:1px solid #777;
+                border-radius:12px;">
+
+                <h3>📝 Voice Transcript</h3>
+
+                <p id="transcriptText"></p>
+
+            </section>
+
+            <!-- INVESTIGATION RESULTS -->
+            <div id="results"
+                style="display:none; text-align:left; margin-top:35px;">
+
+                <h2>Investigation Results</h2>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span id="status"></span>
+                </p>
+
+                <p>
+                    <strong>Keywords:</strong>
+                    <span id="keywords"></span>
+                </p>
+
+                <p id="analysis"></p>
+
+                <h3>Evidence Sources</h3>
+                <div id="evidence"></div>
+
+                <h3>AI Evidence Assessment</h3>
+                <div id="aiAnalysis"></div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+
+</body>
+</html>
